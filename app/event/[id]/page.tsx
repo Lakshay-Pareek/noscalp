@@ -1,5 +1,5 @@
 "use client";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import ProgressStepper from "@/app/components/event/ProgressStepper";
@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 
 export default function EventPage() {
   const params = useParams();
+  const router = useRouter();
   const eventId = params.id as string;
   const event = getEventById(eventId);
 
@@ -29,8 +30,9 @@ export default function EventPage() {
   }
 
   const handleBookNow = (slot: any) => {
-    console.log("Booking slot:", slot);
-    // Handle booking logic here
+    // Store the selected time slot and navigate to seat selection
+    sessionStorage.setItem("selectedTimeSlot", JSON.stringify(slot));
+    router.push(`/event/${eventId}/seats`);
   };
 
   return (
@@ -47,7 +49,7 @@ export default function EventPage() {
             backgroundPosition: "top",
           }}
         />
-        <div className="absolute opacity-90 inset-0 z-10 bg-linear-to-br from-[#ED4690] to-[#5522CC]"/>
+        <div className="absolute opacity-90 inset-0 z-10 bg-linear-to-br from-[#ED4690] to-[#5522CC]" />
         <Navbar />
       </div>
 

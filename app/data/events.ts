@@ -1,4 +1,5 @@
 import { TimeSlot } from "../components/event/DateTimeSelector";
+import { VenueSize } from "../types/seat";
 
 export interface Event {
   id: string;
@@ -7,6 +8,7 @@ export interface Event {
   image: string;
   category: string;
   venue: string;
+  venueSize: VenueSize;
   timeSlots: TimeSlot[];
 }
 
@@ -19,6 +21,7 @@ export const eventsData: Event[] = [
     image: "/Events/7.png",
     category: "Concert",
     venue: "Royal Albert Hall, London",
+    venueSize: "large",
     timeSlots: [
       {
         date: "03",
@@ -101,6 +104,7 @@ export const eventsData: Event[] = [
     image: "/events/kpop-group.png",
     category: "Concert",
     venue: "SBS Prism Tower, Seoul",
+    venueSize: "medium",
     timeSlots: [
       {
         date: "14",
